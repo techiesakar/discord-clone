@@ -4,12 +4,14 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "prisma generate next build",
     "start": "next start",
     "lint": "next lint",
     "generate": "npx prisma generate",
     "db-push": "npx prisma db push",
-    "prisma-studio": "npx prisma studio"
+    "prisma-studio": "npx prisma studio",
+    "postinstall": "prisma generate",
+    "production:build": "npx prisma generate && npx prisma migrate deploy && next build"
   },
   "dependencies": {
     "@clerk/nextjs": "^4.27.1",
