@@ -5,10 +5,10 @@
   "scripts": {
     "dev": "next dev",
     "db-push": "npx prisma db push",
+    "generate": "npx prisma generate",
     "build": "prisma generate && next build",
     "start": "next start",
     "lint": "next lint",
-    "generate": "npx prisma generate",
     "prisma-studio": "npx prisma studio",
     "postinstall": "prisma generate"
   },
