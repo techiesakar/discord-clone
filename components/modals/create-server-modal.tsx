@@ -53,7 +53,6 @@ export const CreateServerModal = () => {
     } catch (error) {
       console.log(error);
     }
-    console.log(values);
   };
 
   const handleClose = () => {
