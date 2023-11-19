@@ -15,8 +15,10 @@ import { Button } from "../ui/button";
 import { useOrigin } from "@/hooks/use-origin";
 import { useState } from "react";
 import axios from "axios";
+import { useRouter } from "next/navigation";
 
 export const InviteModal = () => {
+  const router = useRouter();
   const { onOpen, isOpen, onClose, type, data } = useModal();
   const origin = useOrigin();
 
@@ -41,6 +43,7 @@ export const InviteModal = () => {
         `/api/servers/${server?.id}/invite-code`
       );
       onOpen("invite", { server: response.data });
+      router.refresh();
       setIsLoading(false);
     } catch (error) {
       console.log(error);
