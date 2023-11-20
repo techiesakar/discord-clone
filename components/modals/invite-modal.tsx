@@ -1,4 +1,5 @@
 "use client";
+import axios from "axios";
 
 import { Check, Copy, RefreshCw } from "lucide-react";
 import {
@@ -16,7 +17,6 @@ import { Input } from "@/components/ui/input";
 import { Button } from "../ui/button";
 import { useOrigin } from "@/hooks/use-origin";
 import { useState } from "react";
-import axios from "axios";
 import { useRouter } from "next/navigation";
 import { cn } from "@/lib/utils";
 
