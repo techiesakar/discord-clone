@@ -4,6 +4,8 @@ import { Check, Copy, RefreshCw } from "lucide-react";
 import {
   Dialog,
   DialogContent,
+  DialogDescription,
+  DialogFooter,
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
@@ -16,6 +18,7 @@ import { useOrigin } from "@/hooks/use-origin";
 import { useState } from "react";
 import axios from "axios";
 import { useRouter } from "next/navigation";
+import { cn } from "@/lib/utils";
 
 export const InviteModal = () => {
   const router = useRouter();
@@ -51,42 +54,49 @@ export const InviteModal = () => {
     }
   };
   return (
-    <Dialog open={isModalOpen} onOpenChange={onClose}>
-      <DialogContent className="bg-white text-black p-0 overflow-hidden">
-        <DialogHeader className="pt-8 px-6">
-          <DialogTitle className="text-2xl text-center font-bold">
-            Invite Friends
-          </DialogTitle>
+    <Dialog onOpenChange={onClose} open={isModalOpen}>
+      <DialogContent className="sm:max-w-md">
+        <DialogHeader>
+          <DialogTitle>Invite link</DialogTitle>
+          <DialogDescription>
+            Anyone who has this link will be able to join the server.
+          </DialogDescription>
         </DialogHeader>
-        <div className="p-6">
-          <Label className="uppercase text-xs font-bold text-zinc-500 dark:text-secondary/70">
-            Server invite link
-          </Label>
-          <div className="flex items-center mt-2 gap-x-2">
-            <Input
-              disabled={isLoading}
-              className="bg-zinc-300/50 border-0 focus-visible:ring-0 text-black focus-visible:ring-offset-0"
-              value={inviteUrl}
-            />
-            <Button disabled={isLoading} onClick={onCopy} size="icon">
-              {copied ? (
-                <Check className="w-4 h-4" />
-              ) : (
-                <Copy className="w-4 h-4" />
-              )}
-            </Button>
+        <div className="flex items-center space-x-2">
+          <div className="grid flex-1 gap-2">
+            <Label htmlFor="link" className="sr-only">
+              Link
+            </Label>
+            <Input disabled={isLoading} id="link" value={inviteUrl} readOnly />
           </div>
           <Button
-            onClick={generateNewLink}
             disabled={isLoading}
-            variant="link"
             size="sm"
-            className="text-xs text-zinc-500 mt-4"
+            className="px-3"
+            onClick={onCopy}
           >
-            Generate a new link
-            <RefreshCw className="w-4 h-4 ml-2" />
+            <span className="sr-only">Copy</span>
+
+            {copied ? (
+              <Check className="w-4 h-4" />
+            ) : (
+              <Copy className="w-4 h-4" />
+            )}
           </Button>
         </div>
+        <DialogFooter className="sm:justify-start">
+          <Button
+            type="button"
+            disabled={isLoading}
+            variant="secondary"
+            onClick={generateNewLink}
+          >
+            Generate New Link
+            <RefreshCw
+              className={cn("w-4 h-4 ml-2", isLoading && "animate-spin")}
+            />
+          </Button>
+        </DialogFooter>
       </DialogContent>
     </Dialog>
   );
