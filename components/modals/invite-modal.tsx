@@ -1,7 +1,15 @@
 "use client";
 import axios from "axios";
+import { useState } from "react";
+import { useRouter } from "next/navigation";
+
+import { useOrigin } from "@/hooks/use-origin";
+import { useModal } from "@/hooks/use-modal-store";
+
+import { cn } from "@/lib/utils";
 
 import { Check, Copy, RefreshCw } from "lucide-react";
+
 import {
   Dialog,
   DialogContent,
@@ -11,14 +19,9 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 
-import { useModal } from "@/hooks/use-modal-store";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
-import { Button } from "../ui/button";
-import { useOrigin } from "@/hooks/use-origin";
-import { useState } from "react";
-import { useRouter } from "next/navigation";
-import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
 
 export const InviteModal = () => {
   const router = useRouter();
