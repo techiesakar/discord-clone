@@ -14,7 +14,7 @@ import { useParams, useRouter } from "next/navigation";
 
 interface ServerSearchProps {
   data: {
-    label: String;
+    label: string;
     type: "channel" | "member";
     data:
       | {
@@ -25,6 +25,7 @@ interface ServerSearchProps {
       | undefined;
   }[];
 }
+
 export const ServerSearch = ({ data }: ServerSearchProps) => {
   const [open, setOpen] = useState(false);
   const router = useRouter();
@@ -82,6 +83,7 @@ export const ServerSearch = ({ data }: ServerSearchProps) => {
 
             return (
               <CommandGroup key={label} heading={label}>
+                {" "}
                 {data?.map(({ id, icon, name }) => {
                   return (
                     <CommandItem
