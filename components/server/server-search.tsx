@@ -1,6 +1,9 @@
 "use client";
 
 import { Search } from "lucide-react";
+import { useEffect, useState } from "react";
+import { useParams, useRouter } from "next/navigation";
+
 import {
   CommandDialog,
   CommandEmpty,
@@ -8,9 +11,7 @@ import {
   CommandInput,
   CommandItem,
   CommandList,
-} from "../ui/command";
-import { useEffect, useState } from "react";
-import { useParams, useRouter } from "next/navigation";
+} from "@/components/ui/command";
 
 interface ServerSearchProps {
   data: {
@@ -60,6 +61,7 @@ export const ServerSearch = ({ data }: ServerSearchProps) => {
       return router.push(`/servers/${params?.serverId}/channels/${id}`);
     }
   };
+
   return (
     <>
       <button
@@ -83,7 +85,6 @@ export const ServerSearch = ({ data }: ServerSearchProps) => {
 
             return (
               <CommandGroup key={label} heading={label}>
-                {" "}
                 {data?.map(({ id, icon, name }) => {
                   return (
                     <CommandItem

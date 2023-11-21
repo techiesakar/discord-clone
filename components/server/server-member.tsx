@@ -1,10 +1,11 @@
 "use client";
 
-import { cn } from "@/lib/utils";
 import { Member, MemberRole, Profile, Server } from "@prisma/client";
 import { ShieldAlert, ShieldCheck } from "lucide-react";
 import { useParams, useRouter } from "next/navigation";
-import { UserAvatar } from "../user-avatar";
+
+import { cn } from "@/lib/utils";
+import { UserAvatar } from "@/components/user-avatar";
 
 interface ServerMemberProps {
   member: Member & { profile: Profile };
@@ -28,6 +29,7 @@ export const ServerMember = ({ member, server }: ServerMemberProps) => {
   const onClick = () => {
     router.push(`/servers/${params?.serverId}/conversations/${member.id}`);
   };
+
   return (
     <button
       onClick={onClick}
@@ -38,8 +40,7 @@ export const ServerMember = ({ member, server }: ServerMemberProps) => {
     >
       <UserAvatar
         src={member.profile.imageUrl}
-        name={member.profile.name}
-        className="h-8 w-8 md:h-8 md:w-8 rounded-full"
+        className="h-8 w-8 md:h-8 md:w-8"
       />
       <p
         className={cn(

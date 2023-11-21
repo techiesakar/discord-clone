@@ -19,7 +19,6 @@ import { useRouter } from "next/navigation";
 export const DeleteServerModal = () => {
   const router = useRouter();
   const { isOpen, onClose, type, data } = useModal();
-
   const isModalOpen = isOpen && type === "deleteServer";
   const { server } = data;
   const [isLoading, setIsLoading] = useState(false);
@@ -27,10 +26,13 @@ export const DeleteServerModal = () => {
   const onLeave = async () => {
     try {
       setIsLoading(true);
-      await axios.delete(`/api/servers/${server?.id}`);
-      onClose();
-      router.refresh();
-      router.push("/");
+      const res = await axios.delete(`/api/servers/${server?.id}`);
+      if (res.status == 200) {
+        console.log("deleted", res);
+        router.refresh();
+        onClose();
+        router.push("/");
+      }
     } catch (error) {
       console.log(error);
     } finally {
