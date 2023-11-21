@@ -1,8 +1,7 @@
+import { NextApiResponseServerIo } from "@/lib/definitions";
 import { Server as NetServer } from "http";
 import { NextApiRequest } from "next";
 import { Server as ServerIO } from "socket.io";
-
-import { NextApiResponseServerIo } from "@/lib/definitions";
 
 export const config = {
   api: {
@@ -20,6 +19,7 @@ const ioHandler = (req: NextApiRequest, res: NextApiResponseServerIo) => {
     });
     res.socket.server.io = io;
   }
+
   res.end();
 };
 
