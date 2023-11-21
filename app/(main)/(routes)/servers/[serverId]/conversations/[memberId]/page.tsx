@@ -6,6 +6,7 @@ import { getOrConversation } from "@/lib/conversation";
 import { db } from "@/lib/db";
 
 import { ChatHeader } from "@/components/chat/chat-header";
+import { ChatInput } from "@/components/chat/chat-input";
 
 interface MemberIdPageProps {
   params: {
@@ -53,6 +54,15 @@ const MemberIdPage = async ({ params }: MemberIdPageProps) => {
         name={otherMember.profile.name}
         imageUrl={otherMember.profile.imageUrl}
         serverId={params.serverId}
+      />
+      <div className="flex-1">Future Messages</div>
+      <ChatInput
+        name={otherMember.profile.name}
+        type="channel"
+        apiUrl="/api/socket/messages"
+        query={{
+          conversationId: conversation.id,
+        }}
       />
     </div>
   );
