@@ -12,8 +12,6 @@ import { ServerSearch } from "./server-search";
 import { ServerSection } from "./server-section";
 import { ServerChannel } from "./server-channel";
 import { ServerMember } from "./server-member";
-import { Suspense } from "react";
-import Hello from "./hello";
 
 interface ServerSidebarProps {
   serverId: string;
@@ -137,16 +135,15 @@ export const ServerSidebar = async ({ serverId }: ServerSidebarProps) => {
               role={role}
               label="Text Channels"
             />
+
             <div className="space-y-[2px]">
               {textChannels.map((channel) => (
-                <Suspense fallback={<Hello />}>
-                  <ServerChannel
-                    key={channel.id}
-                    channel={channel}
-                    role={role}
-                    server={server}
-                  />
-                </Suspense>
+                <ServerChannel
+                  key={channel.id}
+                  channel={channel}
+                  role={role}
+                  server={server}
+                />
               ))}
             </div>
           </div>

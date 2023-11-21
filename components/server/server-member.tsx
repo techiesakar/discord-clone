@@ -6,6 +6,7 @@ import { useParams, useRouter } from "next/navigation";
 
 import { cn } from "@/lib/utils";
 import { UserAvatar } from "@/components/user-avatar";
+import Link from "next/link";
 
 interface ServerMemberProps {
   member: Member & { profile: Profile };
@@ -31,8 +32,9 @@ export const ServerMember = ({ member, server }: ServerMemberProps) => {
   };
 
   return (
-    <button
-      onClick={onClick}
+    <Link
+      // onClick={onClick}
+      href={`/servers/${params?.serverId}/conversations/${member.id}`}
       className={cn(
         "group px-2 py-2 rounded-md flex items-center gap-x-2 w-full hover:bg-zinc-700/10 dark:hover:bg-zinc-700/50 transition mb-1",
         params?.memberId === member.id && "bg-zinc-700/20 dark:bg-zinc-700"
@@ -52,6 +54,6 @@ export const ServerMember = ({ member, server }: ServerMemberProps) => {
         {member.profile.name}
       </p>
       {icon}
-    </button>
+    </Link>
   );
 };
