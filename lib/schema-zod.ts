@@ -8,6 +8,9 @@ export const serverFormSchema = z.object({
   imageUrl: z.string().min(1, {
     message: "Server image is required",
   }),
+  fileUrl: z.string().min(1, {
+    message: "File url is required",
+  }),
 });
 
 export const channelFormSchema = z.object({
